@@ -1,4 +1,4 @@
-## Encoder to button adapter ##
+## Encoder to button adapter  
 
 This little board is designed to convert the CW and CCW encoder rotation into an active low "press button" events.
 The main use for this adapter are DIY joystick/cockpit systems with no dedicated rotary encoder inputs.
@@ -12,7 +12,7 @@ The number of steps is buffered and "clicked out" in a constant period pulses to
 Two types of encoders are implemented: half step and full step. Setting is done via a jumper.
 How to determine the encoder type: one step should generate one button press event. If it takes two steps to make one click, or one step generates two clicks, simply change the encoder type setting to the opposite one.
 
-#### Programming the ATTINY25 chip: ####  
+#### Programming the ATTINY25 chip:
 use any ISP AVR programmer, like USBasp or AVR MKII.   
 First, set the fuses to
 * Low  = 0xE2
@@ -21,19 +21,19 @@ First, set the fuses to
 
 then upload the **Enc2Btn.hex** file found in firmware/hex directory.
 
-#### Compatible encoder models (11mm): ####
+#### Compatible encoder models (11mm):
 * ALPS EC11 series
 * BOURNS PEC11L-4xxxF series
 * various no name 11mm rotary encoders  
 
-#### Operation: ####
+#### Operation:
 1. Connect the power lines: GND and VCC (3-5V DC).
 2. Connect the INC and DEC outputs to any active low button inputs in your joystick/controller board.
 3. If encoder has a built in button, attach the BTN out to another button input.
 
 Depending on the encoder type and it's internal construction it may happen the INC and DEC outputs will work backwards, CW rotation will generate pulses on DEC and vice versa. No big deal, as you can swap the button inputs freely.
 
-#### Construction: ####
+#### Construction: 
 Boards can be ordered directly from OSH Park:
 
 <a href="https://www.oshpark.com/shared_projects/oFZJGAvs"><img src="https://www.oshpark.com/assets/badge-5b7ec47045b78aef6eb9d83b3bac6b1920de805e9a0c227658eac6e19a045b9c.png" alt="Order from OSH Park"></img></a>
@@ -51,7 +51,7 @@ Passive components are in 0603 size. The ATTINY25SU chip is in SOIC8 **Wide** pa
 ![alt text][pic5]
 
 
-#### Credits: ####
+#### Credits:
 
 The encoder subroutines are heavily inspired by the work of Ben Buxton   http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html  
 
