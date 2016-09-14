@@ -55,6 +55,9 @@ Passive components are in 0603 size. The ATTINY25SU chip is in SOIC8 **Wide** pa
 
 The encoder subroutines are heavily inspired by the work of Ben Buxton   http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html  
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=Wu3WuwwYTMM
+" target="_blank"><img src="http://img.youtube.com/vi/Wu3WuwwYTMM/0.jpg"
+alt="Encoder to button converter" width="600" height="450" border="10" /></a>
 
 ------
 (c) 08/09.2016 by Piotr Zapart
