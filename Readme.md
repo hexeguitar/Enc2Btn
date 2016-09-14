@@ -40,7 +40,7 @@ Boards can be ordered directly from OSH Park:
 
 ![alt text][pcbtop] ![alt text][pcbbtm]
 
-Passive components are in 0603 size. The ATTINY25SU chip is in SOIC8 Wide package.
+Passive components are in 0603 size. The ATTINY25SU chip is in SOIC8 **Wide** package.
 
 ![alt text][pic2]
 
