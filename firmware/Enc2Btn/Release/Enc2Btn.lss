@@ -1,0 +1,367 @@
+
+Enc2Btn.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002f4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000002f4  00000388  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000e  00800062  00800062  0000038a  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000038a  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	35 c0       	rjmp	.+106    	; 0x6c <__ctors_end>
+   2:	4d c0       	rjmp	.+154    	; 0x9e <__bad_interrupt>
+   4:	dd c0       	rjmp	.+442    	; 0x1c0 <__vector_2>
+   6:	4b c0       	rjmp	.+150    	; 0x9e <__bad_interrupt>
+   8:	4a c0       	rjmp	.+148    	; 0x9e <__bad_interrupt>
+   a:	49 c0       	rjmp	.+146    	; 0x9e <__bad_interrupt>
+   c:	48 c0       	rjmp	.+144    	; 0x9e <__bad_interrupt>
+   e:	47 c0       	rjmp	.+142    	; 0x9e <__bad_interrupt>
+  10:	46 c0       	rjmp	.+140    	; 0x9e <__bad_interrupt>
+  12:	45 c0       	rjmp	.+138    	; 0x9e <__bad_interrupt>
+  14:	46 c1       	rjmp	.+652    	; 0x2a2 <__vector_10>
+  16:	43 c0       	rjmp	.+134    	; 0x9e <__bad_interrupt>
+  18:	42 c0       	rjmp	.+132    	; 0x9e <__bad_interrupt>
+  1a:	41 c0       	rjmp	.+130    	; 0x9e <__bad_interrupt>
+  1c:	40 c0       	rjmp	.+128    	; 0x9e <__bad_interrupt>
+
+0000001e <__trampolines_end>:
+  1e:	45 6e       	ori	r20, 0xE5	; 229
+  20:	63 32       	cpi	r22, 0x23	; 35
+  22:	42 74       	andi	r20, 0x42	; 66
+  24:	6e 28       	or	r6, r14
+  26:	63 29       	or	r22, r3
+  28:	32 30       	cpi	r19, 0x02	; 2
+  2a:	31 36       	cpi	r19, 0x61	; 97
+  2c:	50 69       	ori	r21, 0x90	; 144
+  2e:	6f 74       	andi	r22, 0x4F	; 79
+  30:	72 5a       	subi	r23, 0xA2	; 162
+  32:	61 70       	andi	r22, 0x01	; 1
+  34:	61 72       	andi	r22, 0x21	; 33
+  36:	74 00       	.word	0x0074	; ????
+
+00000037 <encTabFS>:
+  37:	00 02 04 00 03 00 01 10 03 02 00 00 03 02 01 00     ................
+  47:	06 00 04 00 06 05 00 20 06 05 04 00                 ....... ....
+
+00000053 <encTabHS>:
+  53:	03 02 01 00 23 00 01 00 13 02 00 00 03 05 04 00     ....#...........
+  63:	03 03 04 10 03 05 03 20 00                          ....... .
+
+0000006c <__ctors_end>:
+  6c:	11 24       	eor	r1, r1
+  6e:	1f be       	out	0x3f, r1	; 63
+  70:	cf ed       	ldi	r28, 0xDF	; 223
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	10 e0       	ldi	r17, 0x00	; 0
+  76:	a0 e6       	ldi	r26, 0x60	; 96
+  78:	b0 e0       	ldi	r27, 0x00	; 0
+  7a:	e4 ef       	ldi	r30, 0xF4	; 244
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a2 36       	cpi	r26, 0x62	; 98
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	20 e0       	ldi	r18, 0x00	; 0
+  8c:	a2 e6       	ldi	r26, 0x62	; 98
+  8e:	b0 e0       	ldi	r27, 0x00	; 0
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a0 37       	cpi	r26, 0x70	; 112
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	1b d1       	rcall	.+566    	; 0x2d2 <main>
+  9c:	29 c1       	rjmp	.+594    	; 0x2f0 <_exit>
+
+0000009e <__bad_interrupt>:
+  9e:	b0 cf       	rjmp	.-160    	; 0x0 <__vectors>
+
+000000a0 <hdwInit>:
+  a0:	87 b3       	in	r24, 0x17	; 23
+  a2:	83 60       	ori	r24, 0x03	; 3
+  a4:	87 bb       	out	0x17, r24	; 23
+  a6:	88 b3       	in	r24, 0x18	; 24
+  a8:	87 60       	ori	r24, 0x07	; 7
+  aa:	88 bb       	out	0x18, r24	; 24
+  ac:	8a b5       	in	r24, 0x2a	; 42
+  ae:	82 60       	ori	r24, 0x02	; 2
+  b0:	8a bd       	out	0x2a, r24	; 42
+  b2:	83 b7       	in	r24, 0x33	; 51
+  b4:	83 60       	ori	r24, 0x03	; 3
+  b6:	83 bf       	out	0x33, r24	; 51
+  b8:	8c e7       	ldi	r24, 0x7C	; 124
+  ba:	89 bd       	out	0x29, r24	; 41
+  bc:	89 b7       	in	r24, 0x39	; 57
+  be:	80 61       	ori	r24, 0x10	; 16
+  c0:	89 bf       	out	0x39, r24	; 57
+  c2:	62 d0       	rcall	.+196    	; 0x188 <encoderInit>
+  c4:	2f e0       	ldi	r18, 0x0F	; 15
+  c6:	88 e1       	ldi	r24, 0x18	; 24
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	0f b6       	in	r0, 0x3f	; 63
+  cc:	f8 94       	cli
+  ce:	a8 95       	wdr
+  d0:	81 bd       	out	0x21, r24	; 33
+  d2:	0f be       	out	0x3f, r0	; 63
+  d4:	21 bd       	out	0x21, r18	; 33
+  d6:	08 95       	ret
+
+000000d8 <regEncoderEventCallback>:
+  d8:	90 93 64 00 	sts	0x0064, r25
+  dc:	80 93 63 00 	sts	0x0063, r24
+  e0:	08 95       	ret
+
+000000e2 <getEncoder>:
+  e2:	2f b7       	in	r18, 0x3f	; 63
+  e4:	f8 94       	cli
+  e6:	80 91 6c 00 	lds	r24, 0x006C
+  ea:	90 91 6d 00 	lds	r25, 0x006D
+  ee:	2f bf       	out	0x3f, r18	; 63
+  f0:	08 95       	ret
+
+000000f2 <setEncoder>:
+  f2:	2f b7       	in	r18, 0x3f	; 63
+  f4:	f8 94       	cli
+  f6:	90 93 6d 00 	sts	0x006D, r25
+  fa:	80 93 6c 00 	sts	0x006C, r24
+  fe:	2f bf       	out	0x3f, r18	; 63
+ 100:	08 95       	ret
+
+00000102 <encoderService>:
+ 102:	96 b3       	in	r25, 0x16	; 22
+ 104:	93 ff       	sbrs	r25, 3
+ 106:	02 c0       	rjmp	.+4      	; 0x10c <encoderService+0xa>
+ 108:	22 e0       	ldi	r18, 0x02	; 2
+ 10a:	01 c0       	rjmp	.+2      	; 0x10e <encoderService+0xc>
+ 10c:	20 e0       	ldi	r18, 0x00	; 0
+ 10e:	94 fb       	bst	r25, 4
+ 110:	88 27       	eor	r24, r24
+ 112:	80 f9       	bld	r24, 0
+ 114:	82 2b       	or	r24, r18
+ 116:	92 fb       	bst	r25, 2
+ 118:	99 27       	eor	r25, r25
+ 11a:	90 f9       	bld	r25, 0
+ 11c:	90 93 6b 00 	sts	0x006B, r25
+ 120:	20 91 6b 00 	lds	r18, 0x006B
+ 124:	99 27       	eor	r25, r25
+ 126:	87 fd       	sbrc	r24, 7
+ 128:	90 95       	com	r25
+ 12a:	e0 91 62 00 	lds	r30, 0x0062
+ 12e:	ef 70       	andi	r30, 0x0F	; 15
+ 130:	f0 e0       	ldi	r31, 0x00	; 0
+ 132:	ee 0f       	add	r30, r30
+ 134:	ff 1f       	adc	r31, r31
+ 136:	ee 0f       	add	r30, r30
+ 138:	ff 1f       	adc	r31, r31
+ 13a:	e8 0f       	add	r30, r24
+ 13c:	f9 1f       	adc	r31, r25
+ 13e:	21 11       	cpse	r18, r1
+ 140:	03 c0       	rjmp	.+6      	; 0x148 <encoderService+0x46>
+ 142:	ed 5a       	subi	r30, 0xAD	; 173
+ 144:	ff 4f       	sbci	r31, 0xFF	; 255
+ 146:	02 c0       	rjmp	.+4      	; 0x14c <encoderService+0x4a>
+ 148:	e9 5c       	subi	r30, 0xC9	; 201
+ 14a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 14c:	e4 91       	lpm	r30, Z
+ 14e:	e0 93 62 00 	sts	0x0062, r30
+ 152:	80 91 62 00 	lds	r24, 0x0062
+ 156:	80 73       	andi	r24, 0x30	; 48
+ 158:	b1 f0       	breq	.+44     	; 0x186 <encoderService+0x84>
+ 15a:	80 93 6f 00 	sts	0x006F, r24
+ 15e:	80 32       	cpi	r24, 0x20	; 32
+ 160:	31 f4       	brne	.+12     	; 0x16e <encoderService+0x6c>
+ 162:	80 91 6c 00 	lds	r24, 0x006C
+ 166:	90 91 6d 00 	lds	r25, 0x006D
+ 16a:	01 96       	adiw	r24, 0x01	; 1
+ 16c:	05 c0       	rjmp	.+10     	; 0x178 <encoderService+0x76>
+ 16e:	80 91 6c 00 	lds	r24, 0x006C
+ 172:	90 91 6d 00 	lds	r25, 0x006D
+ 176:	01 97       	sbiw	r24, 0x01	; 1
+ 178:	90 93 6d 00 	sts	0x006D, r25
+ 17c:	80 93 6c 00 	sts	0x006C, r24
+ 180:	81 e0       	ldi	r24, 0x01	; 1
+ 182:	80 93 6e 00 	sts	0x006E, r24
+ 186:	08 95       	ret
+
+00000188 <encoderInit>:
+ 188:	87 b3       	in	r24, 0x17	; 23
+ 18a:	87 7e       	andi	r24, 0xE7	; 231
+ 18c:	87 bb       	out	0x17, r24	; 23
+ 18e:	88 b3       	in	r24, 0x18	; 24
+ 190:	88 61       	ori	r24, 0x18	; 24
+ 192:	88 bb       	out	0x18, r24	; 24
+ 194:	b6 df       	rcall	.-148    	; 0x102 <encoderService>
+ 196:	8b b7       	in	r24, 0x3b	; 59
+ 198:	80 62       	ori	r24, 0x20	; 32
+ 19a:	8b bf       	out	0x3b, r24	; 59
+ 19c:	85 b3       	in	r24, 0x15	; 21
+ 19e:	88 61       	ori	r24, 0x18	; 24
+ 1a0:	85 bb       	out	0x15, r24	; 21
+ 1a2:	08 95       	ret
+
+000001a4 <encoderEvent>:
+ 1a4:	80 91 6e 00 	lds	r24, 0x006E
+ 1a8:	88 23       	and	r24, r24
+ 1aa:	49 f0       	breq	.+18     	; 0x1be <encoderEvent+0x1a>
+ 1ac:	e0 91 63 00 	lds	r30, 0x0063
+ 1b0:	f0 91 64 00 	lds	r31, 0x0064
+ 1b4:	30 97       	sbiw	r30, 0x00	; 0
+ 1b6:	09 f0       	breq	.+2      	; 0x1ba <encoderEvent+0x16>
+ 1b8:	09 95       	icall
+ 1ba:	10 92 6e 00 	sts	0x006E, r1
+ 1be:	08 95       	ret
+
+000001c0 <__vector_2>:
+ 1c0:	1f 92       	push	r1
+ 1c2:	0f 92       	push	r0
+ 1c4:	0f b6       	in	r0, 0x3f	; 63
+ 1c6:	0f 92       	push	r0
+ 1c8:	11 24       	eor	r1, r1
+ 1ca:	2f 93       	push	r18
+ 1cc:	3f 93       	push	r19
+ 1ce:	4f 93       	push	r20
+ 1d0:	5f 93       	push	r21
+ 1d2:	6f 93       	push	r22
+ 1d4:	7f 93       	push	r23
+ 1d6:	8f 93       	push	r24
+ 1d8:	9f 93       	push	r25
+ 1da:	af 93       	push	r26
+ 1dc:	bf 93       	push	r27
+ 1de:	ef 93       	push	r30
+ 1e0:	ff 93       	push	r31
+ 1e2:	8f df       	rcall	.-226    	; 0x102 <encoderService>
+ 1e4:	ff 91       	pop	r31
+ 1e6:	ef 91       	pop	r30
+ 1e8:	bf 91       	pop	r27
+ 1ea:	af 91       	pop	r26
+ 1ec:	9f 91       	pop	r25
+ 1ee:	8f 91       	pop	r24
+ 1f0:	7f 91       	pop	r23
+ 1f2:	6f 91       	pop	r22
+ 1f4:	5f 91       	pop	r21
+ 1f6:	4f 91       	pop	r20
+ 1f8:	3f 91       	pop	r19
+ 1fa:	2f 91       	pop	r18
+ 1fc:	0f 90       	pop	r0
+ 1fe:	0f be       	out	0x3f, r0	; 63
+ 200:	0f 90       	pop	r0
+ 202:	1f 90       	pop	r1
+ 204:	18 95       	reti
+
+00000206 <buttonUpdate>:
+ 206:	80 91 6f 00 	lds	r24, 0x006F
+ 20a:	80 32       	cpi	r24, 0x20	; 32
+ 20c:	29 f4       	brne	.+10     	; 0x218 <buttonUpdate+0x12>
+ 20e:	80 91 6a 00 	lds	r24, 0x006A
+ 212:	8f 5f       	subi	r24, 0xFF	; 255
+ 214:	80 93 6a 00 	sts	0x006A, r24
+ 218:	80 91 6f 00 	lds	r24, 0x006F
+ 21c:	80 31       	cpi	r24, 0x10	; 16
+ 21e:	29 f4       	brne	.+10     	; 0x22a <buttonUpdate+0x24>
+ 220:	80 91 68 00 	lds	r24, 0x0068
+ 224:	8f 5f       	subi	r24, 0xFF	; 255
+ 226:	80 93 68 00 	sts	0x0068, r24
+ 22a:	08 95       	ret
+
+0000022c <buttonHandle>:
+ 22c:	20 91 69 00 	lds	r18, 0x0069
+ 230:	90 91 6a 00 	lds	r25, 0x006A
+ 234:	80 91 60 00 	lds	r24, 0x0060
+ 238:	29 17       	cp	r18, r25
+ 23a:	99 f0       	breq	.+38     	; 0x262 <buttonHandle+0x36>
+ 23c:	90 91 66 00 	lds	r25, 0x0066
+ 240:	86 95       	lsr	r24
+ 242:	89 17       	cp	r24, r25
+ 244:	10 f4       	brcc	.+4      	; 0x24a <buttonHandle+0x1e>
+ 246:	c0 98       	cbi	0x18, 0	; 24
+ 248:	01 c0       	rjmp	.+2      	; 0x24c <buttonHandle+0x20>
+ 24a:	c0 9a       	sbi	0x18, 0	; 24
+ 24c:	80 91 66 00 	lds	r24, 0x0066
+ 250:	81 11       	cpse	r24, r1
+ 252:	09 c0       	rjmp	.+18     	; 0x266 <buttonHandle+0x3a>
+ 254:	80 91 69 00 	lds	r24, 0x0069
+ 258:	8f 5f       	subi	r24, 0xFF	; 255
+ 25a:	80 93 69 00 	sts	0x0069, r24
+ 25e:	80 91 60 00 	lds	r24, 0x0060
+ 262:	80 93 66 00 	sts	0x0066, r24
+ 266:	20 91 67 00 	lds	r18, 0x0067
+ 26a:	90 91 68 00 	lds	r25, 0x0068
+ 26e:	80 91 60 00 	lds	r24, 0x0060
+ 272:	29 17       	cp	r18, r25
+ 274:	99 f0       	breq	.+38     	; 0x29c <buttonHandle+0x70>
+ 276:	90 91 65 00 	lds	r25, 0x0065
+ 27a:	86 95       	lsr	r24
+ 27c:	89 17       	cp	r24, r25
+ 27e:	10 f4       	brcc	.+4      	; 0x284 <buttonHandle+0x58>
+ 280:	c1 98       	cbi	0x18, 1	; 24
+ 282:	01 c0       	rjmp	.+2      	; 0x286 <buttonHandle+0x5a>
+ 284:	c1 9a       	sbi	0x18, 1	; 24
+ 286:	80 91 65 00 	lds	r24, 0x0065
+ 28a:	81 11       	cpse	r24, r1
+ 28c:	09 c0       	rjmp	.+18     	; 0x2a0 <buttonHandle+0x74>
+ 28e:	80 91 67 00 	lds	r24, 0x0067
+ 292:	8f 5f       	subi	r24, 0xFF	; 255
+ 294:	80 93 67 00 	sts	0x0067, r24
+ 298:	80 91 60 00 	lds	r24, 0x0060
+ 29c:	80 93 65 00 	sts	0x0065, r24
+ 2a0:	08 95       	ret
+
+000002a2 <__vector_10>:
+ 2a2:	1f 92       	push	r1
+ 2a4:	0f 92       	push	r0
+ 2a6:	0f b6       	in	r0, 0x3f	; 63
+ 2a8:	0f 92       	push	r0
+ 2aa:	11 24       	eor	r1, r1
+ 2ac:	8f 93       	push	r24
+ 2ae:	80 91 66 00 	lds	r24, 0x0066
+ 2b2:	81 11       	cpse	r24, r1
+ 2b4:	81 50       	subi	r24, 0x01	; 1
+ 2b6:	80 93 66 00 	sts	0x0066, r24
+ 2ba:	80 91 65 00 	lds	r24, 0x0065
+ 2be:	81 11       	cpse	r24, r1
+ 2c0:	81 50       	subi	r24, 0x01	; 1
+ 2c2:	80 93 65 00 	sts	0x0065, r24
+ 2c6:	8f 91       	pop	r24
+ 2c8:	0f 90       	pop	r0
+ 2ca:	0f be       	out	0x3f, r0	; 63
+ 2cc:	0f 90       	pop	r0
+ 2ce:	1f 90       	pop	r1
+ 2d0:	18 95       	reti
+
+000002d2 <main>:
+ 2d2:	83 e0       	ldi	r24, 0x03	; 3
+ 2d4:	91 e0       	ldi	r25, 0x01	; 1
+ 2d6:	00 df       	rcall	.-512    	; 0xd8 <regEncoderEventCallback>
+ 2d8:	e3 de       	rcall	.-570    	; 0xa0 <hdwInit>
+ 2da:	80 e0       	ldi	r24, 0x00	; 0
+ 2dc:	90 e0       	ldi	r25, 0x00	; 0
+ 2de:	09 df       	rcall	.-494    	; 0xf2 <setEncoder>
+ 2e0:	8f e3       	ldi	r24, 0x3F	; 63
+ 2e2:	80 93 60 00 	sts	0x0060, r24
+ 2e6:	78 94       	sei
+ 2e8:	a8 95       	wdr
+ 2ea:	5c df       	rcall	.-328    	; 0x1a4 <encoderEvent>
+ 2ec:	9f df       	rcall	.-194    	; 0x22c <buttonHandle>
+ 2ee:	fc cf       	rjmp	.-8      	; 0x2e8 <main+0x16>
+
+000002f0 <_exit>:
+ 2f0:	f8 94       	cli
+
+000002f2 <__stop_program>:
+ 2f2:	ff cf       	rjmp	.-2      	; 0x2f2 <__stop_program>
