@@ -12,7 +12,7 @@ The number of steps is buffered and "clicked out" in a constant period pulses to
 Two types of encoders are implemented: half step and full step. Setting is done via a jumper.
 How to determine the encoder type: one step should generate one button press event. If it takes two steps to make one click, or one step generates two clicks, simply change the encoder type setting to the opposite one.
 
-#### Programming the ATTINY25 chip:####  
+#### Programming the ATTINY25 chip: ####  
 use any ISP AVR programmer, like USBasp or AVR MKII.   
 First, set the fuses to
 * Low  = 0xE2
@@ -21,7 +21,7 @@ First, set the fuses to
 
 then upload the **Enc2Btn.hex** file found in firmware/hex directory.
 
-#### Compatible encoder models (11mm):####
+#### Compatible encoder models (11mm): ####
 * ALPS EC11 series
 * BOURNS PEC11L-4xxxF series
 * various no name 11mm rotary encoders  
